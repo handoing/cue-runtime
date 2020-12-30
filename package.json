@@ -1,0 +1,27 @@
+{
+  "name": "cue-runtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "esbuild index.js --bundle --format=iife --global-name=Cue --serve --outfile=./dist/cue.js",
+    "build": "esbuild index.js --bundle --format=iife --global-name=Cue --outfile=./dist/cue.js",
+    "server": "http-server",
+    "test": "node ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handoing/cue-runtime.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/handoing/cue-runtime/issues"
+  },
+  "homepage": "https://github.com/handoing/cue-runtime#readme",
+  "dependencies": {
+    "esbuild": "^0.8.27",
+    "http-server": "^0.12.3"
+  }
+}
