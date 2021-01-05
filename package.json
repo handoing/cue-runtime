@@ -2,10 +2,11 @@
   "name": "cue-runtime",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "watch": "esbuild index.js --bundle --format=iife --global-name=Cue --serve --outfile=./dist/cue.js",
-    "build": "esbuild index.js --bundle --format=iife --global-name=Cue --outfile=./dist/cue.js",
+    "build": "esbuild index.js --bundle --format=cjs --minify --outfile=./dist/index.js",
+    "watch:iife": "esbuild index.js --bundle --format=iife --global-name=Cue --serve --outfile=./dist/index.iife.js",
+    "build:iife": "esbuild index.js --bundle --format=iife --global-name=Cue --outfile=./dist/index.iife.js",
     "server": "http-server",
     "test": "node ./test/test.js"
   },
