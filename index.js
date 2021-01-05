@@ -1,10 +1,16 @@
-import create from './src/create';
-import render from './src/render';
+import _render from './src/render';
+import { _creatElement, _createText, _string, _if } from './src/vNode/index';
 
 class Cue {
-  constructor(instance) {
-    this._ctx = this.initContext(instance);
-    this.vNode = create(instance);
+  constructor({
+    script,
+    css,
+    tpl,
+    render
+  }) {
+    this.render = render;
+    this._ctx = this.initContext(script);
+    this.vNode = this.render(this._ctx);
   }
 
   initContext(instance) {
@@ -14,7 +20,7 @@ class Cue {
         ...this.data,
         ...data
       }
-      const vNode = create(this);
+      const vNode = vm.render(this);
       console.log('new node: ', vNode);
       console.log('old node: ', vm.vNode);
 
@@ -24,14 +30,14 @@ class Cue {
       // this.vNode = vNode;
       
       vm.clearRoot();
-      render(vNode, vm.root);
+      _render(vNode, vm.root);
     }
     return instance;
   }
 
   mount(root) {
     this.root = root;
-    render(this.vNode, this.root);
+    _render(this.vNode, this.root);
   }
 
   clearRoot() {
@@ -43,4 +49,10 @@ class Cue {
   }
 }
 
-export default Cue;
+export {
+  Cue,
+  _creatElement,
+  _createText,
+  _string,
+  _if
+};

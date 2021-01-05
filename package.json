@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "esbuild index.js --bundle --format=cjs --minify --outfile=./dist/index.js",
-    "watch:iife": "esbuild index.js --bundle --format=iife --global-name=Cue --serve --outfile=./dist/index.iife.js",
-    "build:iife": "esbuild index.js --bundle --format=iife --global-name=Cue --outfile=./dist/index.iife.js",
+    "watch:iife": "esbuild index.js --bundle --format=iife --global-name=C --serve --outfile=./dist/index.iife.js",
+    "build:iife": "esbuild index.js --bundle --format=iife --global-name=C --outfile=./dist/index.iife.js",
     "server": "http-server",
     "test": "node ./test/test.js"
   },
