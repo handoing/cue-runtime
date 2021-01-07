@@ -11,6 +11,7 @@ class Cue {
     this.render = render;
     this._ctx = this.initContext(script);
     this.vNode = this.render(this._ctx);
+    this._ctx.created && this._ctx.created();
   }
 
   initContext(instance) {
@@ -31,6 +32,7 @@ class Cue {
       
       vm.clearRoot();
       _render(vNode, vm.root);
+      vm._ctx.updated && this._ctx.updated();
     }
     return instance;
   }
@@ -38,6 +40,7 @@ class Cue {
   mount(root) {
     this.root = root;
     _render(this.vNode, this.root);
+    this._ctx.mounted && this._ctx.mounted();
   }
 
   clearRoot() {
