@@ -1,6 +1,15 @@
-const { Cue, _creatElement, _createText, _string, _if } = C;
+const {
+  Cue,
+  _creatElement,
+  _createText,
+  _string,
+  _if,
+  _withDirectives,
+  _vShow,
+  _vHide
+} = C;
 
-function create(_ctx) { return _creatElement('div', { "class": "main", }, [ _creatElement('img', { "class": "image","on-click": function($event) { _ctx.onChange($event) },"src": "" + _string(_ctx.data.img) + "", }, [  ]),_creatElement('div', { "class": "toggle", }, [ _createText("toggle " + _string(_ctx.data.toggle) + "") ]),_creatElement('span', { "class": "icon", }, [  ]) ]) }
+function create(_ctx) { return  _creatElement('div', { "class": "main", }, [  _creatElement('img', { "class": "image","on-click": function($event) { _ctx.onChange($event) },"src": "" + _string(_ctx.data.img) + "", }, [  ]), _creatElement('div', { "class": "toggle", }, [ _createText("toggle " + _string(_ctx.data.toggle) + "") ]), _withDirectives(_creatElement('div', {  }, [ _createText("ooooo") ]), [ [_vShow, "" + _string(_ctx.data.toggle) + ""],["c-abc", "" + _string(_ctx.data.isGo) + ""], ]), _creatElement('span', { "class": "icon", }, [  ]) ]) }
 
 const vm = new Cue({
   render: create,
@@ -30,3 +39,6 @@ const vm = new Cue({
 });
 
 vm.mount(document.querySelector('#app'))
+setTimeout(function() {
+  vm.destroy()
+}, 20 * 1000);

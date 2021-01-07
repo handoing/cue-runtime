@@ -1,7 +1,15 @@
 import _render from './src/render';
 import _diff from './src/diff';
 import _patch from './src/patch';
-import { _creatElement, _createText, _string, _if } from './src/vNode/index';
+import {
+  _creatElement,
+  _createText,
+  _string,
+  _if,
+  _withDirectives,
+  _vShow,
+  _vHide
+} from './src/vNode/index';
 
 class Cue {
   constructor({
@@ -25,6 +33,7 @@ class Cue {
       console.log('old node: ', this.vNode);
 
       var patches = _diff(this.vNode, vNode);
+      console.log(patches)
       _patch(this.root, patches);
       this.vNode = vNode;
       
@@ -38,6 +47,11 @@ class Cue {
     _render(this.vNode, this.root);
     this._ctx.mounted && this._ctx.mounted();
   }
+
+  destroy() {
+    this.root.innerHTML = '';
+    this._ctx.destroyed && this._ctx.destroyed();
+  }
 }
 
 export {
@@ -45,5 +59,8 @@ export {
   _creatElement,
   _createText,
   _string,
-  _if
+  _if,
+  _withDirectives,
+  _vShow,
+  _vHide
 };

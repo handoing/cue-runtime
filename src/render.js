@@ -17,9 +17,9 @@ function _render(vNode) {
       const value = vNode.attrs[key];
       if (key.indexOf('on-') !== -1) {
         dom.addEventListener(key.slice(3), value, false);
-      } else {
-        setAttribute(dom, key, value);
+        return;
       }
+      setAttribute(dom, key, value);
     });
   }
 

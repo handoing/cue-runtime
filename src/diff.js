@@ -22,7 +22,6 @@ function dfsWalk(oldNode, newNode, index, patches) {
     oldNode.tag === newNode.tag &&
     oldNode.key === newNode.key
   ) {
-    // TODO: fix directives rebind.
     var attrsPatches = diffAttrs(oldNode, newNode)
 
     if (attrsPatches) {
@@ -75,6 +74,9 @@ function diffAttrs(oldNode, newNode) {
   var attrsPatches = {}
 
   for (key in oldAttrs) {
+    if (key.startsWith('on-')) {
+      continue;
+    }
     value = oldAttrs[key]
     if (newAttrs[key] !== value) {
       count++
@@ -83,6 +85,9 @@ function diffAttrs(oldNode, newNode) {
   }
 
   for (key in newAttrs) {
+    if (key.startsWith('on-')) {
+      continue;
+    }
     value = newAttrs[key]
     if (!oldAttrs.hasOwnProperty(key)) {
       count++
