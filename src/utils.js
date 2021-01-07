@@ -24,6 +24,37 @@ function setAttribute(dom, name, value) {
   }
 }
 
+function type(obj) {
+  return Object.prototype.toString.call(obj).replace(/\[object\s|\]/g, '');
+}
+
+function isString(list) {
+  return type(list) === 'String';
+}
+
+function each(array, fn) {
+  for (var i = 0, len = array.length; i < len; i++) {
+    fn(array[i], i);
+  }
+}
+
+function toArray(listLike) {
+  if (!listLike) {
+    return []
+  }
+
+  var list = []
+
+  for (var i = 0, len = listLike.length; i < len; i++) {
+    list.push(listLike[i])
+  }
+
+  return list
+}
+
 export {
-  setAttribute
+  setAttribute,
+  isString,
+  each,
+  toArray
 }
