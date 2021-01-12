@@ -54,8 +54,13 @@ class Cue {
   }
 }
 
+function createApp(options) {
+  return new Cue(options);
+}
+
 export {
   Cue,
+  createApp,
   _creatElement,
   _createText,
   _string,
