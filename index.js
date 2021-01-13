@@ -1,16 +1,6 @@
 import _render from './src/render';
 import _diff from './src/diff';
 import _patch from './src/patch';
-import {
-  _creatElement,
-  _createText,
-  _string,
-  _if,
-  _withDirectives,
-  _vShow,
-  _vHide
-} from './src/vNode/index';
-
 class Cue {
   constructor({
     script,
@@ -60,12 +50,6 @@ function createApp(options) {
 
 export {
   Cue,
-  createApp,
-  _creatElement,
-  _createText,
-  _string,
-  _if,
-  _withDirectives,
-  _vShow,
-  _vHide
+  createApp
 };
+export * from './src/vNode/index';

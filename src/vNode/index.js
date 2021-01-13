@@ -20,6 +20,12 @@ export function _if(check, f1, f2) {
   return check ? f1() : f2();
 }
 
+export function _for(list, handle) {
+  return list.map(function(item, index) {
+    return handle(item, index);
+  })
+}
+
 export function _withDirectives(vNode, directives) {
   directives.map(([ directive, directiveValue ]) => {
     if (!isString(directive)) {

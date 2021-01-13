@@ -10,6 +10,14 @@ function _render(vNode) {
     return document.createTextNode(vNode);
   }
 
+  if (Array.isArray(vNode)) {
+    const fragment = document.createDocumentFragment();
+    vNode.forEach(childList => {
+      childList.forEach((child) => render(child, fragment))
+    });
+    return fragment;
+  }
+
   const dom = document.createElement(vNode.tag);
 
   if (vNode.attrs) {
