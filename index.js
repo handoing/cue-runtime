@@ -23,8 +23,7 @@ class Cue {
   }) {
     this.render = render;
     this._ctx = this.initContext(script);
-    this.vNode = this.render(this._ctx);
-    this._ctx.created && this._ctx.created();
+    this._created();
   }
 
   initContext(instance) {
@@ -43,6 +42,11 @@ class Cue {
       this._ctx.updated && this._ctx.updated();
     }
     return instance;
+  }
+
+  _created() {
+    this.vNode = this.render(this._ctx);
+    this._ctx.created && this._ctx.created();
   }
 
   mount(root) {
@@ -67,3 +71,4 @@ export {
   createApp
 };
 export * from './src/vNode/index';
+export * from './src/component';

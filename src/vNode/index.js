@@ -9,6 +9,10 @@ export function _creatElement(tag, attrs, children) {
   }
 }
 
+export function _createVNode(vm, attrs, handle) {
+  return vm.vNode;
+}
+
 export function _createText(text) {
   return text
 }
