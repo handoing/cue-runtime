@@ -1,3 +1,4 @@
+import { h } from 'snabbdom/build/package/h';
 import { isString } from '../utils';
 
 export function _creatElement(tag, attrs, children) {
@@ -21,9 +22,9 @@ export function _if(check, f1, f2) {
 }
 
 export function _for(list, handle) {
-  return list.map(function(item, index) {
-    return handle(item, index);
-  })
+  return list.reduce(function(total, item, index) {
+    return total.concat(handle(item, index))
+  }, []);
 }
 
 export function _withDirectives(vNode, directives) {
@@ -37,9 +38,13 @@ export function _withDirectives(vNode, directives) {
 }
 
 export function _vShow(vNode, value) {
-  vNode.attrs.style = `display: ${value === 'true' ? 'block' : 'none'};`
+  // vNode.attrs.style = `display: ${value === 'true' ? 'block' : 'none'};`
 }
 
 export function _vHide(vNode, value) {
-  vNode.attrs.style = `display: ${value === 'true' ? 'none' : 'block'};`
+  // vNode.attrs.style = `display: ${value === 'true' ? 'none' : 'block'};`
 }
+
+export {
+  h
+};

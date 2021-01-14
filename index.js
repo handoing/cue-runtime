@@ -1,6 +1,19 @@
-import _render from './src/render';
-import _diff from './src/diff';
-import _patch from './src/patch';
+// import _render from './src/render';
+// import _diff from './src/diff';
+// import _patch from './src/patch';
+
+import { init } from 'snabbdom/build/package/init'
+import { classModule } from 'snabbdom/build/package/modules/class'
+import { propsModule } from 'snabbdom/build/package/modules/props'
+import { styleModule } from 'snabbdom/build/package/modules/style'
+import { eventListenersModule } from 'snabbdom/build/package/modules/eventlisteners'
+
+const patch = init([
+  classModule,
+  propsModule,
+  styleModule,
+  eventListenersModule,
+]);
 class Cue {
   constructor({
     script,
@@ -18,13 +31,13 @@ class Cue {
     instance.setData = (data) => {
       const _ctx = this._ctx;
       this.data = Object.assign(_ctx.data, data)
-      const vNode = this.render(this);
+      const vNode = this.render(_ctx);
+
       console.log('new node: ', vNode);
       console.log('old node: ', this.vNode);
-
-      var patches = _diff(this.vNode, vNode);
-      console.log(patches)
-      _patch(this.root, patches);
+      
+      // _patch(this.root, _diff(this.vNode, vNode));
+      patch(this.vNode, vNode);
       this.vNode = vNode;
       
       this._ctx.updated && this._ctx.updated();
@@ -34,7 +47,8 @@ class Cue {
 
   mount(root) {
     this.root = root;
-    _render(this.vNode, this.root);
+    // _render(this.vNode, this.root);
+    patch(this.root, this.vNode);
     this._ctx.mounted && this._ctx.mounted();
   }
 

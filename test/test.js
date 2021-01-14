@@ -1,5 +1,5 @@
 const {
-  Cue,
+  createApp,
   _creatElement,
   _createText,
   _string,
@@ -7,12 +7,13 @@ const {
   _for,
   _withDirectives,
   _vShow,
-  _vHide
+  _vHide,
+  h
 } = C;
 
-function create(_ctx) { return  _creatElement('div', { "class": "main", }, [  _creatElement('img', { "class": "image","on-click": function($event) { _ctx.onChange($event) },"src": "" + _string(_ctx.data.img) + "", }, [  ]), _creatElement('div', { "class": "toggle", }, [ _createText("toggle " + _string(_ctx.data.toggle) + "") ]), _withDirectives(_creatElement('div', {  }, [ _createText("ooooo") ]), [ [_vShow, "" + _string(_ctx.data.toggle) + ""],["c-abc", "" + _string(_ctx.data.isGo) + ""], ]),_for(_ctx.data.nnnn, function(item, item_index) { return [  _creatElement('p', {  }, [ _createText("------") ]) ] }) ]) }
+function create(_ctx) { return  h('div', { class: {main: true}, }, [  h('img', { class: {image1: true},on: { click: function($event) { _ctx.onChange($event) } },props: {src: "" + _string(_ctx.data.img) + ""}, }, [  ]), h('img', { class: {image2: true},on: { click: function($event) { _ctx.addItem($event) } },props: {src: "" + _string(_ctx.data.img) + ""}, }, [  ]), h('div', { class: {toggle: true}, }, [  h('p', {  }, [ _createText("toggle " + _string(_ctx.data.toggle) + "") ]) ]), _withDirectives(h('div', {  }, [ _createText("ooooo") ]), [ [_vShow, "" + _string(_ctx.data.toggle) + ""],["c-abc", "" + _string(_ctx.data.isGo) + ""], ]),..._for(_ctx.data.nnnn, function(item, item_index) { return [  h('p', {  }, [ _createText("------") ]) ] }) ]) }
 
-const vm = new Cue({
+const vm = createApp({
   render: create,
   script: {
     data: {
@@ -35,6 +36,12 @@ const vm = new Cue({
     onChange(e) {
       this.setData({
         toggle: !this.data.toggle
+      })
+    },
+    addItem(e) {
+      this.data.nnnn.push('')
+      this.setData({
+        nnnn: this.data.nnnn
       })
     }
   }

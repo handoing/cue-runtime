@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/handoing/cue-runtime#readme",
   "dependencies": {
-    "esbuild": "^0.8.27"
+    "esbuild": "^0.8.27",
+    "snabbdom": "^2.1.0"
   },
   "devDependencies": {
     "http-server": "^0.12.3"
